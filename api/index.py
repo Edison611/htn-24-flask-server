@@ -34,7 +34,7 @@ def excuses():
     excuse_type = data['type_of_res']
 
     response = co.chat(
-        model="command-r-plus",
+        # model="command-r-plus",
         message=f"Provide a single custom sarcastic, realistic {excuse_type} excuse that the user can use to avoid doing their {task}. Make sure the excuse is less than 30 words in length. Use 'my productivity is solar-powered, and unfortunately, it's cloudy today' as an example of an absurd excuse. Use science for scientific excuses. don't always start sentences with 'sorry, I can't.",
     )
     CONNECTION_STRING = os.getenv("DB_STRING")
@@ -90,7 +90,7 @@ def excuses():
         now = datetime.now().strftime("%Y-%m-%d")
         history_collection.insert_one({"task": task, "urgency": urgency, "date": now, "response": response.text})
     except:
-        return jsonify({"response" : response.text, "urgency": "unknown"})
+        return jsonify({"response" : response.text, "urgency": "Moderate"})
     return jsonify({"response" : response.text, "urgency": urgency})
 
 @app.route('/history', methods=['GET'])
