@@ -4,9 +4,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 import os
-from db import get_database
 from datetime import datetime
-from classifier import classify
 from pymongo import MongoClient
 from cohere import ClassifyExample
 
@@ -43,7 +41,7 @@ def excuses():
     
     # Create the database for our exam  ple (we will use the same database throughout the tutorial
     db = client['htn2024']
-    
+
     inputs = [task]
     examples = [
     ClassifyExample(text="Fix the production server issue immediately", label="Critical"),
