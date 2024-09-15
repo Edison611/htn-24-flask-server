@@ -82,7 +82,7 @@ def excuses():
     urgency = co.classify(
         inputs=inputs,
         examples=examples,
-    )
+    ).classifications[0].prediction
     try:
         # urgency = classify([task]).classifications[0].prediction
         # Added env variables

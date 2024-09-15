@@ -6,35 +6,41 @@ from dotenv import load_dotenv
 load_dotenv()
 
 co = cohere.Client(os.getenv("API_KEY"))
+class CustomExample:
+    def __init__(self, text, label):
+        self.text = text
+        self.label = label
 
 def classify(inputs):
     examples = [
-    ClassifyExample(text="Fix the production server issue immediately", label="Critical"),
-    ClassifyExample(text="Prepare the end-of-year financial report for the board meeting next week", label="High Priority"),
-    ClassifyExample(text="Review team performance for the quarterly report", label="Moderate"),
-    ClassifyExample(text="Clean up the old project files from the archive", label="Low Priority"),
-    ClassifyExample(text="Organize the office stationery cabinet", label="Trivial"),
-    ClassifyExample(text="Respond to an urgent customer complaint", label="Critical"),
-    ClassifyExample(text="Schedule a meeting with the client for project feedback", label="High Priority"),
-    ClassifyExample(text="Update the project documentation for future reference", label="Moderate"),
-    ClassifyExample(text="Check and organize the backup logs for the last month", label="Low Priority"),
-    ClassifyExample(text="Test the new feature that was added last week", label="Trivial"),
-    ClassifyExample(text="Address the security vulnerability in the system immediately", label="Critical"),
-    ClassifyExample(text="Submit the quarterly sales report by the end of this week", label="High Priority"),
-    ClassifyExample(text="Review and update employee handbooks", label="Moderate"),
-    ClassifyExample(text="Organize the team bonding event", label="Low Priority"),
-    ClassifyExample(text="Water the office plants", label="Trivial"),
-    ClassifyExample(text="Resolve the data corruption issue affecting the live environment", label="Critical"),
-    ClassifyExample(text="Draft the proposal for the new client project", label="High Priority"),
-    ClassifyExample(text="Review the latest market research for future projects", label="Moderate"),
-    ClassifyExample(text="Update the employee database with recent changes", label="Low Priority"),
-    ClassifyExample(text="Refill the coffee machine in the break room", label="Trivial"),
-    ClassifyExample(text="Investigate and resolve the network outage in the main office", label="Critical"),
-    ClassifyExample(text="Prepare the presentation for the client meeting tomorrow", label="High Priority"),
-    ClassifyExample(text="Compile the research notes for the next brainstorming session", label="Moderate"),
-    ClassifyExample(text="Check the licenses for software that are expiring soon", label="Low Priority"),
-    ClassifyExample(text="Sort and file old invoices from previous projects", label="Trivial"),
-    ClassifyExample(text="I have an important meeting in 10 minutes", label="Critical")
+    CustomExample("Fix the production server issue immediately", "Critical"),
+    CustomExample("Prepare the end-of-year financial report for the board meeting next week", "High Priority"),
+    CustomExample("Review team performance for the quarterly report", "Moderate"),
+    CustomExample("Clean up the old project files from the archive", "Low Priority"),
+    CustomExample("Organize the office stationery cabinet", "Trivial"),
+    CustomExample("Respond to an urgent customer complaint", "Critical"),
+    CustomExample("Schedule a meeting with the client for project feedback", "High Priority"),
+    CustomExample("Update the project documentation for future reference", "Moderate"),
+    CustomExample("Check and organize the backup logs for the last month", "Low Priority"),
+    CustomExample("Test the new feature that was added last week", "Trivial"),
+    CustomExample("Address the security vulnerability in the system immediately", "Critical"),
+    CustomExample("Submit the quarterly sales report by the end of this week", "High Priority"),
+    CustomExample("Review and update employee handbooks", "Moderate"),
+    CustomExample("Organize the team bonding event", "Low Priority"),
+    CustomExample("Water the office plants", "Trivial"),
+    CustomExample("Resolve the data corruption issue affecting the live environment", "Critical"),
+    CustomExample("Draft the proposal for the new client project", "High Priority"),
+    CustomExample("Review the latest market research for future projects", "Moderate"),
+    CustomExample("Update the employee database with recent changes", "Low Priority"),
+    CustomExample("Refill the coffee machine in the break room", "Trivial"),
+    CustomExample("Investigate and resolve the network outage in the main office", "Critical"),
+    CustomExample("Prepare the presentation for the client meeting tomorrow", "High Priority"),
+    CustomExample("Compile the research notes for the next brainstorming session", "Moderate"),
+    CustomExample("Check the licenses for software that are expiring soon", "Low Priority"),
+    CustomExample("Sort and file old invoices from previous projects", "Trivial"),
+    CustomExample("I have an important meeting in 10 minutes", "Critical"),
+    CustomExample("Relax", "Trivial"),
+    CustomExample("Study", "Moderate")
 ]
 
     response = co.classify(
@@ -42,3 +48,4 @@ def classify(inputs):
         examples=examples,
     )
     return response
+print(classify(["Fix the production server issue immediately"]))
