@@ -80,6 +80,7 @@ def excuses():
     )
     try:
         # urgency = classify([task]).classifications[0].prediction
+        # Added env variables
         history_collection = db['history']
         now = datetime.now().strftime("%Y-%m-%d")
         history_collection.insert_one({"task": task, "urgency": urgency, "date": now, "response": response.text})
